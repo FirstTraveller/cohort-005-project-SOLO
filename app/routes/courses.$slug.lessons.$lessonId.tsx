@@ -922,8 +922,8 @@ export async function action({ params, request }: Route.ActionArgs) {
     requireLessonInCourse(lessonId, course.id);
 
     if (intent === "toggle-bookmark") {
-      toggleBookmark(db, currentUserId, lessonId, new Date());
-      return { ok: true };
+      const bookmarked = toggleBookmark(db, currentUserId, lessonId, new Date());
+      return { ok: true, bookmarked };
     }
 
     const parsed = parseFormData(formData, saveNoteSchema);
